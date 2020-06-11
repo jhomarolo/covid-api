@@ -24,7 +24,7 @@
                 "999999",
                 "--colors",
                 "--recursive",
-                "${workspaceFolder}/examples/**/*.test.js"
+                "${workspaceFolder}/**/*.test.js"
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": [

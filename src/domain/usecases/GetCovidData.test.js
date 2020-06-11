@@ -2,163 +2,38 @@
 /* eslint-disable no-async-promise-executor */
 /* eslint-env node, mocha */
 
-const { expect } = require('chai')
+const assert = require("assert")
 const GetCovidData = require('./GetCovidData')
 const Covid = require('../entities/Covid')
 
-const rendaVariavelTest = [
-  {
-    empresa: 'VX-CONTABILIDADE',
-    carteira: '31216568',
-    cnpjFundo: '31216568000178',
-    nome: 'FIDC XPCE SEC',
-    nomeMercado: 'CETIP21',
-    tipo: 'Cadastro Pendente',
-    codigoCustodia: 'ERFI11',
-    emissor: 'VERT',
-    dataCompra: '06/21/2019 00:00:00',
-    dataEmissao: '10/01/2018 00:00:00',
-    dataVencimento: '12/12/2022 00:00:00',
-    indexadorA: 'DI1',
-    porcentagemIndexadorA: 100,
-    porcentagemIndexadorATipo: '%',
-    indexadorB: null,
-    porcentagemIndexadorB: null,
-    porcentagemIndexadorBTipo: '%',
-    taxaA: 0,
-    taxaB: 6,
-    quantidadeLivre: 1423,
-    quantidadeBloqueio: 0,
-    valorCompra: 1534486.52,
-    curvaAtual: 1560030.24,
-    mercadoAtual: 1559451.68,
-    ateVencimento: 'Não',
-  },
-  {
-    empresa: 'VX-PROCESSAMENTO',
-    carteira: '31216568',
-    cnpjFundo: '31216568000178',
-    nome: 'FIDC XPCE SEC',
-    nomeMercado: 'CETIP21',
-    tipo: 'Cadastro Pendente',
-    codigoCustodia: 'ERFI11',
-    emissor: 'VERT',
-    dataCompra: '06/21/2019 00:00:00',
-    dataEmissao: '10/01/2018 00:00:00',
-    dataVencimento: '12/12/2022 00:00:00',
-    indexadorA: 'DI1',
-    porcentagemIndexadorA: 100,
-    porcentagemIndexadorATipo: '%',
-    indexadorB: null,
-    porcentagemIndexadorB: null,
-    porcentagemIndexadorBTipo: '%',
-    taxaA: 0,
-    taxaB: 6,
-    quantidadeLivre: 1423,
-    quantidadeBloqueio: 0,
-    valorCompra: 1534486.52,
-    curvaAtual: 1560030.24,
-    mercadoAtual: 1559451.68,
-    ateVencimento: 'Não',
-  },
+describe("List Covid-19 data from source", () => {
 
-].map(x => {
-  return new RendaFixa(x)
-})
+  it("Should Return Covid data from repo", async () => {
+    // Given
 
-const injection = {
-  SinqiaRepository: class {
-    // eslint-disable-next-line no-unused-vars
-    async listarAtivosRendaFixaPorEmpresaEData(
-      cnpjEmpresa,
-      cnpjFundo,
-      carteira
-    ) {
-      return rendaVariavelTest
+    const country = "Barbados"
+
+    var dataObjectArray = 
+     [{"country":"Barbados","deaths":[{"date":"2020-01-22T00:00:00.000Z","quantity":0},{"date":"2020-01-23T00:00:00.000Z","quantity":0},{"date":"2020-01-24T00:00:00.000Z","quantity":0},{"date":"2020-01-25T00:00:00.000Z","quantity":0},{"date":"2020-01-26T00:00:00.000Z","quantity":0},{"date":"2020-01-27T00:00:00.000Z","quantity":0},{"date":"2020-01-28T00:00:00.000Z","quantity":0},{"date":"2020-01-29T00:00:00.000Z","quantity":0},{"date":"2020-01-30T00:00:00.000Z","quantity":0},{"date":"2020-01-31T00:00:00.000Z","quantity":0},{"date":"2020-02-01T00:00:00.000Z","quantity":0},{"date":"2020-02-02T00:00:00.000Z","quantity":0},{"date":"2020-02-03T00:00:00.000Z","quantity":0},{"date":"2020-02-04T00:00:00.000Z","quantity":0},{"date":"2020-02-05T00:00:00.000Z","quantity":0},{"date":"2020-02-06T00:00:00.000Z","quantity":0},{"date":"2020-02-07T00:00:00.000Z","quantity":0},{"date":"2020-02-08T00:00:00.000Z","quantity":0},{"date":"2020-02-09T00:00:00.000Z","quantity":0},{"date":"2020-02-10T00:00:00.000Z","quantity":0},{"date":"2020-02-11T00:00:00.000Z","quantity":0},{"date":"2020-02-12T00:00:00.000Z","quantity":0},{"date":"2020-02-13T00:00:00.000Z","quantity":0},{"date":"2020-02-14T00:00:00.000Z","quantity":0},{"date":"2020-02-15T00:00:00.000Z","quantity":0},{"date":"2020-02-16T00:00:00.000Z","quantity":0},{"date":"2020-02-17T00:00:00.000Z","quantity":0},{"date":"2020-02-18T00:00:00.000Z","quantity":0},{"date":"2020-02-19T00:00:00.000Z","quantity":0},{"date":"2020-02-20T00:00:00.000Z","quantity":0},{"date":"2020-02-21T00:00:00.000Z","quantity":0},{"date":"2020-02-22T00:00:00.000Z","quantity":0},{"date":"2020-02-23T00:00:00.000Z","quantity":0},{"date":"2020-02-24T00:00:00.000Z","quantity":0},{"date":"2020-02-25T00:00:00.000Z","quantity":0},{"date":"2020-02-26T00:00:00.000Z","quantity":0},{"date":"2020-02-27T00:00:00.000Z","quantity":0},{"date":"2020-02-28T00:00:00.000Z","quantity":0},{"date":"2020-02-29T00:00:00.000Z","quantity":0},{"date":"2020-03-01T00:00:00.000Z","quantity":0},{"date":"2020-03-02T00:00:00.000Z","quantity":0},{"date":"2020-03-03T00:00:00.000Z","quantity":0},{"date":"2020-03-04T00:00:00.000Z","quantity":0},{"date":"2020-03-05T00:00:00.000Z","quantity":0},{"date":"2020-03-06T00:00:00.000Z","quantity":0},{"date":"2020-03-07T00:00:00.000Z","quantity":0},{"date":"2020-03-08T00:00:00.000Z","quantity":0},{"date":"2020-03-09T00:00:00.000Z","quantity":0},{"date":"2020-03-10T00:00:00.000Z","quantity":0},{"date":"2020-03-11T00:00:00.000Z","quantity":0},{"date":"2020-03-12T00:00:00.000Z","quantity":0},{"date":"2020-03-13T00:00:00.000Z","quantity":0},{"date":"2020-03-14T00:00:00.000Z","quantity":0},{"date":"2020-03-15T00:00:00.000Z","quantity":0},{"date":"2020-03-16T00:00:00.000Z","quantity":0},{"date":"2020-03-17T00:00:00.000Z","quantity":0},{"date":"2020-03-18T00:00:00.000Z","quantity":0},{"date":"2020-03-19T00:00:00.000Z","quantity":0},{"date":"2020-03-20T00:00:00.000Z","quantity":0},{"date":"2020-03-21T00:00:00.000Z","quantity":0},{"date":"2020-03-22T00:00:00.000Z","quantity":0},{"date":"2020-03-23T00:00:00.000Z","quantity":0},{"date":"2020-03-24T00:00:00.000Z","quantity":0},{"date":"2020-03-25T00:00:00.000Z","quantity":0},{"date":"2020-03-26T00:00:00.000Z","quantity":0},{"date":"2020-03-27T00:00:00.000Z","quantity":0},{"date":"2020-03-28T00:00:00.000Z","quantity":0},{"date":"2020-03-29T00:00:00.000Z","quantity":0},{"date":"2020-03-30T00:00:00.000Z","quantity":0},{"date":"2020-03-31T00:00:00.000Z","quantity":0},{"date":"2020-04-01T00:00:00.000Z","quantity":0},{"date":"2020-04-02T00:00:00.000Z","quantity":0},{"date":"2020-04-03T00:00:00.000Z","quantity":0},{"date":"2020-04-04T00:00:00.000Z","quantity":0},{"date":"2020-04-05T00:00:00.000Z","quantity":1},{"date":"2020-04-06T00:00:00.000Z","quantity":2},{"date":"2020-04-07T00:00:00.000Z","quantity":3},{"date":"2020-04-08T00:00:00.000Z","quantity":3},{"date":"2020-04-09T00:00:00.000Z","quantity":3},{"date":"2020-04-10T00:00:00.000Z","quantity":4},{"date":"2020-04-11T00:00:00.000Z","quantity":4},{"date":"2020-04-12T00:00:00.000Z","quantity":4},{"date":"2020-04-13T00:00:00.000Z","quantity":4},{"date":"2020-04-14T00:00:00.000Z","quantity":4},{"date":"2020-04-15T00:00:00.000Z","quantity":5},{"date":"2020-04-16T00:00:00.000Z","quantity":5},{"date":"2020-04-17T00:00:00.000Z","quantity":5},{"date":"2020-04-18T00:00:00.000Z","quantity":5},{"date":"2020-04-19T00:00:00.000Z","quantity":5},{"date":"2020-04-20T00:00:00.000Z","quantity":5},{"date":"2020-04-21T00:00:00.000Z","quantity":5},{"date":"2020-04-22T00:00:00.000Z","quantity":5},{"date":"2020-04-23T00:00:00.000Z","quantity":6},{"date":"2020-04-24T00:00:00.000Z","quantity":6},{"date":"2020-04-25T00:00:00.000Z","quantity":6},{"date":"2020-04-26T00:00:00.000Z","quantity":6},{"date":"2020-04-27T00:00:00.000Z","quantity":6},{"date":"2020-04-28T00:00:00.000Z","quantity":6},{"date":"2020-04-29T00:00:00.000Z","quantity":7},{"date":"2020-04-30T00:00:00.000Z","quantity":7},{"date":"2020-05-01T00:00:00.000Z","quantity":7},{"date":"2020-05-02T00:00:00.000Z","quantity":7},{"date":"2020-05-03T00:00:00.000Z","quantity":7},{"date":"2020-05-04T00:00:00.000Z","quantity":7},{"date":"2020-05-05T00:00:00.000Z","quantity":7},{"date":"2020-05-06T00:00:00.000Z","quantity":7},{"date":"2020-05-07T00:00:00.000Z","quantity":7},{"date":"2020-05-08T00:00:00.000Z","quantity":7},{"date":"2020-05-09T00:00:00.000Z","quantity":7},{"date":"2020-05-10T00:00:00.000Z","quantity":7},{"date":"2020-05-11T00:00:00.000Z","quantity":7},{"date":"2020-05-12T00:00:00.000Z","quantity":7},{"date":"2020-05-13T00:00:00.000Z","quantity":7},{"date":"2020-05-14T00:00:00.000Z","quantity":7},{"date":"2020-05-15T00:00:00.000Z","quantity":7},{"date":"2020-05-16T00:00:00.000Z","quantity":7},{"date":"2020-05-17T00:00:00.000Z","quantity":7},{"date":"2020-05-18T00:00:00.000Z","quantity":7},{"date":"2020-05-19T00:00:00.000Z","quantity":7},{"date":"2020-05-20T00:00:00.000Z","quantity":7},{"date":"2020-05-21T00:00:00.000Z","quantity":7},{"date":"2020-05-22T00:00:00.000Z","quantity":7},{"date":"2020-05-23T00:00:00.000Z","quantity":7},{"date":"2020-05-24T00:00:00.000Z","quantity":7},{"date":"2020-05-25T00:00:00.000Z","quantity":7},{"date":"2020-05-26T00:00:00.000Z","quantity":7},{"date":"2020-05-27T00:00:00.000Z","quantity":7},{"date":"2020-05-28T00:00:00.000Z","quantity":7},{"date":"2020-05-29T00:00:00.000Z","quantity":7},{"date":"2020-05-30T00:00:00.000Z","quantity":7},{"date":"2020-05-31T00:00:00.000Z","quantity":7},{"date":"2020-06-01T00:00:00.000Z","quantity":7},{"date":"2020-06-02T00:00:00.000Z","quantity":7},{"date":"2020-06-03T00:00:00.000Z","quantity":7},{"date":"2020-06-04T00:00:00.000Z","quantity":7},{"date":"2020-06-05T00:00:00.000Z","quantity":7}],"geo":{"type":"Point","coordinates":["13.1939","-59.5432"]},"state":""}]
+    
+
+    const injection = {
+      CovidRepository: class {
+        getCovidData(country) {
+          return dataObjectArray
+        }
+      }
     }
 
-    listarUltimasPosicoesCarteira(cnpjFundo, carteira) {
-      return new Date('2020-01-01')
-    }
-  },
-}
+    // When
+    const uc = GetCovidData(injection)
+    const ret = await uc.run({ country: country })    
 
-const cnpjEmpresa = '13.703.306/0001-56'
-const dataCarteira = new Date('01/01/2020')
-const cnpjFundo = '27944148000130'
-const carteira = '27440'
-
-describe('Informações de Ativos Renda Fixa caso de uso', () => {
-  it('Deve retornar os Ativos Renda Fixa procurando por empresa e data', async () => {
-    const uc = GetAtivoRendaFixa(injection)
-    const ret = await uc.run({
-      cnpjEmpresa,
-      dataCarteira,
-      cnpjFundo,
-      carteira,
-    })
-
-    logger.info(ret)
-    const RendasFixa = ret.ok.rendaFixa
-
-    expect(RendasFixa).to.be.an('array')
-    // eslint-disable-next-line no-unused-expressions
-    expect(RendasFixa[0] instanceof RendaFixa).to.be.true
-    expect(RendasFixa[0].empresa).to.be.an('string')
-    expect(RendasFixa[0].carteira).to.be.an('string')
-    expect(RendasFixa[0].nome).to.be.an('string')
-    expect(RendasFixa[0].nomeMercado).to.be.an('string')
-    expect(RendasFixa[0].tipo).to.be.an('string')
-    expect(RendasFixa[0].codigoCustodia).to.be.an('string')
-    expect(RendasFixa[0].emissor).to.be.an('string')
-    expect(RendasFixa[0].dataCompra).to.be.an('string')
-    expect(RendasFixa[0].dataEmissao).to.be.an('string')
-    expect(RendasFixa[0].dataVencimento).to.be.an('string')
-    expect(RendasFixa[0].quantidadeLivre).to.be.an('number')
-    expect(RendasFixa[0].valorCompra).to.be.an('number')
-    expect(RendasFixa[0].quantidadeBloqueio).to.be.an('number')
-    expect(RendasFixa[0].curvaAtual).to.be.an('number')
-    expect(RendasFixa[0].mercadoAtual).to.be.an('number')
-    expect(RendasFixa[0].ateVencimento).to.be.an('string')
-    // eslint-disable-next-line no-unused-expressions
-    expect(RendasFixa[0].valid).to.be.true
-    // eslint-disable-next-line no-unused-expressions
-    expect(ret.isOk).to.be.true
-  })
-
-  it('Deve retornar os Ativos Renda Fixa procurando por empresa', async () => {
-    const uc = GetAtivoRendaFixa(injection)
-    const ret = await uc.run({
-      cnpjEmpresa,
-      cnpjFundo,
-      carteira,
-    })
-
-    logger.info(ret)
-    const RendasFixa = ret.ok.rendaFixa
-
-    expect(RendasFixa).to.be.an('array')
-    // eslint-disable-next-line no-unused-expressions
-    expect(RendasFixa[0] instanceof RendaFixa).to.be.true
-    expect(RendasFixa[0].empresa).to.be.an('string')
-    expect(RendasFixa[0].carteira).to.be.an('string')
-    expect(RendasFixa[0].nome).to.be.an('string')
-    expect(RendasFixa[0].nomeMercado).to.be.an('string')
-    expect(RendasFixa[0].tipo).to.be.an('string')
-    expect(RendasFixa[0].codigoCustodia).to.be.an('string')
-    expect(RendasFixa[0].emissor).to.be.an('string')
-    expect(RendasFixa[0].dataCompra).to.be.an('string')
-    expect(RendasFixa[0].dataEmissao).to.be.an('string')
-    expect(RendasFixa[0].dataVencimento).to.be.an('string')
-    expect(RendasFixa[0].quantidadeLivre).to.be.an('number')
-    expect(RendasFixa[0].valorCompra).to.be.an('number')
-    expect(RendasFixa[0].quantidadeBloqueio).to.be.an('number')
-    expect(RendasFixa[0].curvaAtual).to.be.an('number')
-    expect(RendasFixa[0].mercadoAtual).to.be.an('number')
-    expect(RendasFixa[0].ateVencimento).to.be.an('string')
-    // eslint-disable-next-line no-unused-expressions
-    expect(RendasFixa[0].valid).to.be.true
-    // eslint-disable-next-line no-unused-expressions
-    expect(ret.isOk).to.be.true
+    // Then
+    assert.ok(ret.isOk)
+    assert.deepEqual(
+      ret.ok.covid[0].country,
+      country
+    )
   })
 })

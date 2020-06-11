@@ -4,7 +4,7 @@
   "description": "API for search data from covid-19",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --inspect --require sucrase/register --recursive src/domain/usecases/*.test.js --timeout 10000",
+    "test": "mocha --recursive src/**/*.test.js --timeout 10000",
     "coverage": "nyc mocha src/**/*.test.js",
     "start": "node src/api/server.js"
   },
@@ -38,6 +38,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "nyc": "^14.1.1",
+    "mocha": "^8.0.1",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1"
   }
