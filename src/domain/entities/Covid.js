@@ -1,9 +1,12 @@
 const { entity, field } = require('gotu')
 
 const Covid = entity('Covid', {
-  code: field(String, { presense: true }),
-  id: field(String),
-  name: field(String),
+  country: field(String),
+  state: field(String),
+  geo: field(Array),
+  deaths: field(Array),
+  confirmed: field(Array),
+  recovered: field(Array)
 })
 
 module.exports = Covid

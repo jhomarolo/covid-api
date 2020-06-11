@@ -2,7 +2,7 @@ const database = require('../../config/database')
 const { MongoClient } = require('mongodb')
 
 // covidData
-const Covid = require('../../domain/entities/Covid')
+const CovidEntity = require('../../domain/entities/Covid')
 
 const dbname = database.dbname
 const mongoConnectionString = database.connectString
@@ -12,21 +12,24 @@ class CovidRepository {
   async getCovidData(country) {
     try {
       let client = await MongoClient.connect(mongoConnectionString)
-      const db = client.db(dbname)
-      const collection = db.collection(collectionname)
+      const collection = client.db(dbname).collection(collectionname)
 
+      var covidData = new Array()
+      var findStatement = {}
       var getall = {}
-      if (country)
-        getall = await collection
-          .find({ country: country }, { projection: { _id: 0 } })
-          .toArray()
-      else
-        getall = await collection
-          .find({}, { projection: { _id: 0 } })
-          .toArray()
-      return getall
+
+      if (country) findStatement.country = country
+
+      getall = await collection
+        .find(findStatement, { projection: { _id: 0 } })
+        .toArray()
+
+      for (var i = 0, len = getall.length; i < len; i++) {
+        covidData.push(CovidEntity.fromJSON(getall[i]))
+      }
+
+      return covidData
     } catch (err) {
-      logger.error(err)
       throw new Error(err)
     }
   }
