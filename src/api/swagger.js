@@ -13,9 +13,9 @@ class Swagger {
     const swaggerOptions = {
       swaggerDefinition: {
         info: {
-          title: 'Sinqia API', // Title (required)
+          title: 'Covid Data API', // Title (required)
           version: '1.0.0', // Version (required)
-          description: 'Sinqia Vortx Services',
+          description: 'Covid Data API',
         },
       },
       basePath: '/',

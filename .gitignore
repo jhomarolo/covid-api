@@ -89,3 +89,4 @@ typings/
 .editorconfig
 .eslintrc.json
 .prettierrc
+.deployment
