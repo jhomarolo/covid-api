@@ -1,0 +1,44 @@
+{
+  "name": "covid-api",
+  "version": "1.0.0",
+  "description": "API for search data from covid-19",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --inspect --require sucrase/register --recursive src/domain/usecases/*.test.js --timeout 10000",
+    "coverage": "nyc mocha src/**/*.test.js",
+    "start": "node src/api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhomarolo/covid-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhomarolo/covid-api/issues"
+  },
+  "homepage": "https://github.com/jhomarolo/covid-api#readme",
+  "dependencies": {
+    "buchu": "^1.0.6",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "gotu": "^1.0.6",
+    "mongodb": "^3.5.8",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nyc": "^14.1.1",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1"
+  }
+}
