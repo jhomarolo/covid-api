@@ -4,5 +4,5 @@
     ".vscode{,/**}"
   ],
   "appService.defaultWebAppToDeploy": "None",
-  "python.pythonPath": "/usr/local/bin/python3"
+  "python.pythonPath": "C:\\Python38\\python.exe"
 }
