@@ -12,3 +12,13 @@
 6. No console deve aparecer com o nome do projeto e a frase `Server listening on port 8080` (é possível que de acordo com as configurações do seu computador ele esteja como `localhost:8080` ou `127.0.0.1:8080`)
 7. A Rota principal está em `/covid`
 
+
+## How to contribute
+
+If you would like to help contribute to this **GitHub** Action, please see [CONTRIBUTING](https://github.com/jhomarolo/covid-api/blob/master/.github/CONTRIBUTING.md)
+
+---
+
+### License
+
+- [MIT License](https://github.com/github/super-linter/blob/master/LICENSE)
