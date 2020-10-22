@@ -18,6 +18,7 @@ Fixes #
 
 ### Author/Contributor
 - [ ] If documentation is needed for this change, has that been included in this pull request
+- [ ] Remember to check if code coverage decrease, if so, please implement the necessary tests
 
 ### Reviewing Maintainer
 - [ ] Label as `breaking` if this is a large fundamental change
