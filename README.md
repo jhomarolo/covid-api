@@ -17,7 +17,7 @@
 
 If you would like to help contribute to this repository, please see [CONTRIBUTING](https://github.com/jhomarolo/covid-api/blob/master/.github/CONTRIBUTING.md)
 
----
+--- 
 
 ### License
 
